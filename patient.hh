@@ -24,8 +24,8 @@ public:
     void addPerson();
     void printDetails();
     void getDetails(int rec = 0);
-    void hospitalize();
-    void discharge();
+    void hospitalize();//住院
+    void discharge();//出院
     void removePerson();
 };
 #endif // !PATIENT

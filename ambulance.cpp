@@ -20,16 +20,12 @@ void ambulance::fillMap()
     fstream f;
     f.open("./data/ambulances.csv", ios::in);
     string temp;
-    //skipping the first row containing column headers;
     getline(f >> ws, temp);
-    //analyzing each entry afterwards;
     while (getline(f >> ws, temp))
     {
         ambulance a;
-        //creating a string stream object to read from string 'temp';
         stringstream s(temp);
         string s1, s3, s4, s5;
-        //reading from the string stream object 's';
         getline(s, s1, ',');
         getline(s, a.carNumber, ',');
         getline(s, s3, ',');
@@ -51,7 +47,6 @@ void ambulance::saveMap()
 {
     fstream f;
     f.open("./data/temp.csv", ios::out);
-    // `le first line conataining column headers:
     f << "ambulanceId,carNumber,idle?,address,driverID\n";
     for (auto i : hospital::ambulancesList)
     {
@@ -74,7 +69,7 @@ void ambulance::addAmbulance()
         cout<<"\n\nAmbulances limit reached, can't add more!\n\n";
         return;
     }
-    //getting the basic details of the ambulance from the user side;
+    //输入救护车信息
     cout << "\nEnter Car Registration Number of the ambulance:\n";
     getline(cin >> ws, carNumber);
     if (hospital::ambulancesList.rbegin() != hospital::ambulancesList.rend())
@@ -134,9 +129,6 @@ void ambulance::getDetails(int rec)
                 return;
             }
         }
-        //if a record is found, it's details will be stored in the driver class object that called this function,
-        //and the control is returned;
-        //else:
         cout << "\nNo matching record found!\n";
     }
     return;
@@ -144,11 +136,8 @@ void ambulance::getDetails(int rec)
 
 void ambulance::send()
 {
-
-    //*************picking an idle ambulance*************;
-
     bool gotOne = 0;
-    for (auto i : hospital::ambulancesList)
+    for (auto i : hospital::ambulancesList)//寻找空闲救护车
     {
         if (i.second.idle)
         {
@@ -163,10 +152,8 @@ void ambulance::send()
              << "\n";
         return;
     }
-    //*************  picking a free driver  *************;
-
     gotOne = 0;
-    for (auto i : hospital::driversList)
+    for (auto i : hospital::driversList)//寻找空闲司机
     {
         if (i.second.idle)
         {
@@ -187,10 +174,7 @@ void ambulance::send()
     cout << "Enter destination address:\n";
     getline(cin>>ws,address);
 
-    //updating status of ambulance;
     hospital::ambulancesList[id] = *this;
-
-    //updating status of driver;
     hospital::driversList[D.id].idle = 0;
 
     cout << "ambulance with " << carNumber << " sent with driver " << D.firstName << " " << D.lastName << " (ID = " << D.id << ") successfully!\n";
@@ -200,12 +184,8 @@ void ambulance::reportArrival()
 {
     getDetails();
 
-    //updating status of driver;
-    //note that if we first update the status of ambulance we will lose the identity of it's driver;
-    //and then there will be no way to update the status of the driver;
     hospital::driversList[D.id].idle = 1;
 
-    //updating status of ambulance;
     hospital::ambulancesList[id].idle = 1;
     hospital::ambulancesList[id].address = "`````";
     driver d;

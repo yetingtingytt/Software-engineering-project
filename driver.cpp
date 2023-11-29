@@ -22,16 +22,12 @@ void driver::fillMap()
     fstream f;
     f.open("./data/drivers.csv", ios::in);
     string temp;
-    //skipping the first row containing column headers;
     getline(f >> ws, temp);
-    //analyzing each entry afterwards;
     while (getline(f >> ws, temp))
     {
         driver d;
-        //creating a string stream object to read from string 'temp';
         stringstream s(temp);
         string s1, s4, s5, s9;
-        //reading from the string stream object 's';
         getline(s, s1, ',');
         getline(s, d.firstName, ',');
         getline(s, d.lastName, ',');
@@ -54,7 +50,6 @@ void driver::saveMap()
 {
     fstream f;
     f.open("./data/temp.csv", ios::out);
-    // `le first line conataining column headers:
     f << "driverId,firstName,lastName,gender,age,mobNumber,address,licenseNumber,idle?\n";
     for (auto i : hospital::driversList)
         f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
@@ -72,7 +67,6 @@ void driver::addPerson()
         cout << "\n\nDrivers limit reached, can't add more!\n\n";
         return;
     }
-    //18 and 65 are the age limits for registration of a new driver;
     person::addPerson(18, 65);
     if ((age < 18) || (age > 65))
         return;
@@ -156,7 +150,6 @@ void driver::getDetails(int rec)
             } while (tt == 'Y');
         }
     }
-    //3: Filter by licenseNumber;
     else if (opt == 3)
     {
         string reqlicenseNumber;
@@ -170,9 +163,7 @@ void driver::getDetails(int rec)
                 return;
             }
         }
-        //if a record is found, it's details will be stored in the driver class object that called this function,
-        //and the control is returned;
-        //else:
+
         cout << "\nNo matching record found!\n";
     }
     return;

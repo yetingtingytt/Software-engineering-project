@@ -21,16 +21,12 @@ void nurse::fillMap()
     fstream f;
     f.open("./data/nurses.csv", ios::in);
     string temp;
-    //skipping the first row containing column headers;
     getline(f >> ws, temp);
-    //analyzing each entry afterwards;
     while (getline(f >> ws, temp))
     {
         nurse n;
-        //creating a string stream object to read from string 'temp';
         stringstream s(temp);
         string s1, s4, s5;
-        //reading from the string stream object 's';
         getline(s, s1, ',');
         getline(s, n.firstName, ',');
         getline(s, n.lastName, ',');
@@ -51,7 +47,6 @@ void nurse::saveMap()
 {
     fstream f;
     f.open("./data/temp.csv", ios::out);
-    // `le first line conataining column headers:
     f << "nurseId,firstName,lastName,gender,age,mobNumber,address,type\n";
     for (auto i : hospital::nursesList)
         f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
@@ -69,7 +64,7 @@ void nurse::addPerson()
         cout << "\n\nNurses limit reached, can't add more!\n\n";
         return;
     }
-    //18 and 65 are the age limits for registration of a new nurse;
+    
     person::addPerson(18, 65);
     if ((age < 18) || (age > 65))
         return;

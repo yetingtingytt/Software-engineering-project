@@ -614,9 +614,6 @@ int main()
         a2.fillMap();
         p2.fillMap();
         b.fillMap();
-        // NOTE:
-        // fill drivers' Map before ambulances' Map;
-        // fill doctors' and patients' Map before appointments' Map;
     }
     while (1)
     {
@@ -687,7 +684,7 @@ int main()
 
         cout << endl;
     }
-    // saving data inside maps by overwriting it on the files
+   
     {
         doctor d1;
         patient p1;

@@ -13,9 +13,6 @@ using namespace std;
 #include "bill.hh"
 #include "hospital.hh"
 
-
-//defining already declared static members in the global scope;
-
 map<int, doctor> hospital::doctorsList;
 map<int, patient> hospital::patientsList;
 map<int, nurse> hospital::nursesList;

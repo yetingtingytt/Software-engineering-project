@@ -11,7 +11,7 @@ private:
     int id;
     doctor D;
     patient P;
-    int hh; //hh -> start hour in 24 hour format;
+    int hh; //门诊开始时间
 public:
     appointment();
     ~appointment();

@@ -31,16 +31,12 @@ void prescription::fillMap()
     fstream f;
     f.open("./data/prescriptions.csv", ios::in);
     string temp;
-    //skipping the first row containing column headers;
     getline(f >> ws, temp);
-    //analyzing each entry afterwards;
     while (getline(f >> ws, temp))
     {
         prescription p;
-        //creating a string stream object to read from string 'temp';
         stringstream s(temp);
         string s1, s2, s3;
-        //reading from the string stream object 's';
         getline(s, s1, ',');
         getline(s, s2, ','); 
         getline(s, s3, ',');
@@ -59,7 +55,6 @@ void prescription::saveMap()
 {
     fstream f;
     f.open("./data/temp.csv", ios::out);
-    // `le first line conataining column headers:
     f << "prescriptionId,doctorId,patientId,prescription,data,\n";
     for (auto i : hospital::prescriptionsList)
         f << i.second.id << "," << i.second.D.id << "," << i.second.P.id

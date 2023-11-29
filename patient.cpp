@@ -21,16 +21,12 @@ void patient::fillMap()
     fstream f;
     f.open("./data/patients.csv", ios::in);
     string temp;
-    //skipping the first row containing column headers;
     getline(f >> ws, temp);
-    //analyzing each entry afterwards;
     while (getline(f >> ws, temp))
     {
         patient p;
-        //creating a string stream object to read from string 'temp';
         stringstream s(temp);
         string s1, s4, s5, s8, s9, s10;
-        //reading from the string stream object 's';
         getline(s, s1, ',');
         getline(s, p.firstName, ',');
         getline(s, p.lastName, ',');
@@ -56,7 +52,6 @@ void patient::saveMap()
 {
     fstream f;
     f.open("./data/temp.csv", ios::out);
-    // `le first line conataining column headers:
     f << "patientId,firstName,lastName,gender,age,mobNumber,address,height,weight,wasHospitalized?\n";
     for (auto i : hospital::patientsList)
         f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
@@ -70,9 +65,7 @@ void patient::saveMap()
 }
 void patient::addPerson()
 {
-    //getting the basic details of patient from the user side;
     person::addPerson();
-    //getting patient specific details;
     cout << "\nEnter the height of the patient (in cms):\n";
     cin >> height;
     cout << "\nEnter the weight of the patient (in pounds):\n";
@@ -201,10 +194,3 @@ void patient::removePerson()
     cout << firstName << " " << lastName << " removed successfully!\n";
     return;
 }
-
-// Removing a patient: it's rather "DISCHARGING a HOSPITALIZED patient";
-// If a patient wasn't hospitalized, just came to the hospital for an appointment with;
-// a doctor then that appointment object will be cleared on the next day automatically;
-// and there's no need of removing the patient's record from patients.csv in that case;
-
-// Maybe consider this as a kind of limitation of this system;
