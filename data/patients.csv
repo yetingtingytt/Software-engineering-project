@@ -1,0 +1,5 @@
+patientId,firstName,lastName,gender,age,mobNumber,address,height,weight,wasHospitalized?
+1,1,11,M,1,1,1,1,1,N
+2,2,22,F,1,1,1,1,1,Y
+4,4,1,M,1,1,1,1,1,N
+5,1,1,M,1,1,1,1,1,N

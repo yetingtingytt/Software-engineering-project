@@ -1,0 +1,4 @@
+doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked
+2,2,22,M,23,1,1,1,0
+3,1,11,M,45,1,1,1,0
+4,1,11,M,34,1,1,1,0
